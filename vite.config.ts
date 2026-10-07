@@ -8,7 +8,9 @@ import { defineConfig } from 'vite'
 // needs no server rewrites. Add each new page here.
 const pages = {
   home: 'index.html',
+  'sobre-nos': 'sobre-nos/index.html',
   servicos: 'servicos/index.html',
+  projectos: 'projectos/index.html',
 }
 
 // https://vite.dev/config/

@@ -97,6 +97,12 @@ export const servicesPage = {
   eyebrow: "Serviços",
   title: "Nossos **Serviços**",
   lede: "A escola conta com os seguintes serviços, reunidos num só lugar e articulados entre si por uma equipa multidisciplinar.",
+  photo: {
+    src: "/img/banners/servicos.webp",
+    alt: "Uma técnica da CERCI acompanha uma criança num treino de marcha com canadianas, no exterior do centro.",
+    // Keep the child, on the right of the photo, in view on narrow screens
+    focus: "80% center",
+  },
 };
 
 /** How the services fit together along each person's path */

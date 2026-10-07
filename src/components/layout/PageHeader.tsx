@@ -1,4 +1,6 @@
 import { useRef, type CSSProperties } from "react";
+import type { Photo } from "../../data/home";
+import Backdrop from "../ui/Backdrop";
 import Emphasis from "../ui/Emphasis";
 import { headingDisplay } from "../ui/styles";
 import Navbar from "./Navbar";
@@ -14,13 +16,15 @@ type Props = {
   lede: string;
   /** Jump links to sections of the page */
   links?: { href: string; label: string }[];
+  /** Background photo, under a green veil that keeps the text readable */
+  photo?: Photo;
 };
 
 /**
  * Top of the inner pages. Same frame and navbar as the home hero, shorter,
- * with the page title instead of a photo.
+ * with the page title over a photo (or over plain green when there is none).
  */
-export default function PageHeader({ eyebrow, title, lede, links }: Props) {
+export default function PageHeader({ eyebrow, title, lede, links, photo }: Props) {
   const headerRef = useRef<HTMLElement>(null);
 
   return (
@@ -29,7 +33,14 @@ export default function PageHeader({ eyebrow, title, lede, links }: Props) {
         ref={headerRef}
         className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-verde-escuro to-preto px-6 pt-36 pb-16 text-branco sm:px-10"
       >
-        <div className={`ken absolute inset-0 opacity-10 ${grid}`} />
+        {photo ? (
+          <>
+            <Backdrop photo={photo} label={photo.alt} priority />
+            <div className="absolute inset-0 bg-gradient-to-r from-verde-escuro/95 via-verde-escuro/75 to-preto/45" />
+          </>
+        ) : (
+          <div className={`ken absolute inset-0 opacity-10 ${grid}`} />
+        )}
 
         <Navbar heroRef={headerRef} />
 

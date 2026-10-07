@@ -14,7 +14,12 @@ export type Action = {
   variant?: "link" | "accent" | "outline";
 };
 
-export type Photo = { src: string; alt: string };
+export type Photo = {
+  src: string;
+  alt: string;
+  /** Part of the photo that stays in view when cropped (CSS object-position) */
+  focus?: string;
+};
 
 export type TimelineItem = {
   year: string;

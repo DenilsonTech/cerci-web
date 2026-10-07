@@ -22,7 +22,7 @@ export default function Backdrop({ photo, label, ken = "26s", priority = false }
       loading={priority ? "eager" : "lazy"}
       fetchPriority={priority ? "high" : "auto"}
       className="ken absolute inset-0 h-full w-full object-cover"
-      style={{ ["--ken" as string]: ken }}
+      style={{ ["--ken" as string]: ken, objectPosition: photo.focus }}
     />
   );
 }
