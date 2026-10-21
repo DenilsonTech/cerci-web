@@ -1,5 +1,7 @@
+import type { ReactNode } from "react";
 import type { Photo } from "../../data/home";
 import Emphasis from "./Emphasis";
+import Placeholder from "./Placeholder";
 import Reveal from "./Reveal";
 
 type Props = {
@@ -10,25 +12,44 @@ type Props = {
   /** Title with **bold** words */
   heading: string;
   paragraphs: string[];
-  image: Photo;
+  /** The photo, or the caption of the photo that will go there */
+  image: Photo | { placeholder: string };
   /** Image on the right instead of the left */
   flip?: boolean;
   /** First on the page: load the image straight away */
   eager?: boolean;
+  /** Extra content under the text, e.g. a list of tags */
+  children?: ReactNode;
 };
 
 /** Photo beside a titled text; long lists alternate the sides with `flip`. */
-export default function SplitArticle({ id, kicker, heading, paragraphs, image, flip = false, eager = false }: Props) {
+export default function SplitArticle({
+  id,
+  kicker,
+  heading,
+  paragraphs,
+  image,
+  flip = false,
+  eager = false,
+  children,
+}: Props) {
   return (
     <article id={id} className="grid scroll-mt-28 items-center gap-8 lg:grid-cols-2 lg:gap-16">
       <Reveal className={flip ? "lg:order-2" : ""}>
         <div className="group overflow-hidden rounded-2xl border border-preto/10 bg-branco">
-          <img
-            src={image.src}
-            alt={image.alt}
-            loading={eager ? "eager" : "lazy"}
-            className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(.22,.7,.25,1)] group-hover:scale-[1.04]"
-          />
+          {"src" in image ? (
+            <img
+              src={image.src}
+              alt={image.alt}
+              loading={eager ? "eager" : "lazy"}
+              style={{ objectPosition: image.focus }}
+              className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(.22,.7,.25,1)] group-hover:scale-[1.04]"
+            />
+          ) : (
+            <div className="aspect-[4/3]">
+              <Placeholder label={image.placeholder} />
+            </div>
+          )}
         </div>
       </Reveal>
 
@@ -44,6 +65,7 @@ export default function SplitArticle({ id, kicker, heading, paragraphs, image, f
             </p>
           ))}
         </div>
+        {children}
       </Reveal>
     </article>
   );

@@ -11,6 +11,9 @@ const pages = {
   'sobre-nos': 'sobre-nos/index.html',
   servicos: 'servicos/index.html',
   projectos: 'projectos/index.html',
+  eventos: 'eventos/index.html',
+  voluntariado: 'voluntariado/index.html',
+  parceiros: 'parceiros/index.html',
 }
 
 // https://vite.dev/config/

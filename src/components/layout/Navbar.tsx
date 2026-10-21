@@ -36,7 +36,7 @@ export default function Navbar({ heroRef }: Props) {
 
   return (
     <div
-      className={`inset-x-0 top-0 z-30 flex items-center gap-[26px] bg-verde-lima px-4 py-3 sm:px-[26px] ${
+      className={`inset-x-0 top-0 z-30 flex items-center gap-4 bg-verde-lima px-4 py-3 sm:gap-[26px] sm:px-[26px] ${
         stuck ? "drop-in fixed shadow-md shadow-preto/10" : "fade-in absolute"
       }`}
     >
@@ -80,7 +80,12 @@ export default function Navbar({ heroRef }: Props) {
         })}
       </nav>
 
-      <a href="/#contactos" className={`ml-auto hidden sm:inline-block lg:ml-0 ${btn.accent}`}>
+      {/* Always visible; on very narrow phones it gets a little smaller so it
+          stays on one line */}
+      <a
+        href="/#contactos"
+        className={`${btn.accent} ml-auto whitespace-nowrap max-[380px]:px-3.5 max-[380px]:text-[.82rem] lg:ml-0`}
+      >
         Fale connosco
       </a>
     </div>

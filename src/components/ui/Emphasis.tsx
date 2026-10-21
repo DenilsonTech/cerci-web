@@ -11,6 +11,8 @@ type Props = {
 /** Renders `**bold**` words and line breaks from the content file. */
 export default function Emphasis({ text, dark = false, dot = true }: Props) {
   const bold = dark ? "text-verde-lima" : "text-verde-escuro";
+  // A title that already ends in . ? or ! gets no extra full stop
+  const showDot = dot && !/[.?!]\**$/.test(text.trim());
 
   return (
     <>
@@ -28,7 +30,7 @@ export default function Emphasis({ text, dark = false, dot = true }: Props) {
           )}
         </Fragment>
       ))}
-      {dot && <span className={dark ? "text-verde-lima" : "text-verde-escuro"}>.</span>}
+      {showDot && <span className={dark ? "text-verde-lima" : "text-verde-escuro"}>.</span>}
     </>
   );
 }

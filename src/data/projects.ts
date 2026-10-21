@@ -80,8 +80,21 @@ export const embraceRoom = {
   slug: "abrace-uma-sala",
   title: "Abrace **uma Sala**",
   lede: "O projecto Abrace uma Sala tem como objectivo a angariação de fundos, para suportar e responder às necessidades de uma turma, sendo na aquisição de material didáctico indispensável para a estimulação dos utentes, bem como a contratação de profissionais de diferentes áreas de actuação (educação e saúde), formação e especialização dos mesmos.",
-  // Rooms already embraced, named after their sponsor
-  rooms: ["MOTA-ENGIL", "CASINO POLANA", "STANDARD BANK", "BANCO ÚNICO", "PIPELINE"],
+  // Rooms already embraced, named after their sponsor; the photo is the door
+  // of each room, with the sponsor's sign above it
+  rooms: [
+    { name: "MOTA-ENGIL", photo: "mota-engil" },
+    { name: "CASINO POLANA", photo: "casino-polana" },
+    { name: "STANDARD BANK", photo: "standard-bank" },
+    { name: "BANCO ÚNICO", photo: "banco-unico" },
+    { name: "PIPELINE", photo: "pipeline" },
+  ].map((room) => ({
+    name: room.name,
+    photo: {
+      src: `/img/fotos/salas/${room.photo}.webp`,
+      alt: `Porta da sala ${room.name} na CERCI, com a placa do patrocinador.`,
+    } satisfies Photo,
+  })),
   items: [
     {
       title: "Material didáctico",

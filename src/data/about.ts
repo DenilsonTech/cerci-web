@@ -4,6 +4,7 @@
  */
 
 import { about as homeAbout, type Photo } from "./home";
+import { photos } from "./photos";
 
 export const aboutPage = {
   eyebrow: "Sobre nós",
@@ -25,6 +26,14 @@ export const history = {
   // Same milestones as the home page
   timeline: homeAbout.timeline,
   photo: homeAbout.photo satisfies Photo,
+};
+
+/** Photos from along the way */
+export const memories = {
+  id: "memorias",
+  title: "Memórias **do nosso percurso**",
+  lede: "Alguns momentos do caminho que a CERCI fez até hoje.",
+  gallery: [photos.kwameNkrumah, photos.rodaArLivre, photos.tecnicoEUtente, photos.salaDeActividades],
 };
 
 export const visionMission = {

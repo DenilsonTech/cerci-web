@@ -1,4 +1,3 @@
-import { FiBookOpen } from "react-icons/fi";
 import { embraceRoom } from "../../data/projects";
 import FeatureGrid from "../ui/FeatureGrid";
 import Reveal from "../ui/Reveal";
@@ -14,19 +13,27 @@ export default function EmbraceRoom() {
         <p className="mt-12 mb-0 text-center text-[.8rem] font-bold tracking-[.14em] text-verde-escuro uppercase">
           Salas já abraçadas
         </p>
-        <ul className="mt-5 grid list-none grid-cols-2 gap-4 p-0 sm:grid-cols-3 lg:grid-cols-5">
+        <ul className="mt-5 grid list-none grid-cols-2 gap-3 p-0 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
           {embraceRoom.rooms.map((room, i) => (
             <Reveal
               as="li"
-              key={room}
+              key={room.name}
               delay={i * 0.08}
-              className="flex flex-col items-center gap-3 rounded-xl border border-preto/10 bg-branco px-4 py-6 text-center transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-verde-escuro"
+              className="group overflow-hidden rounded-xl border border-preto/10 bg-branco transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-verde-escuro"
             >
-              <span className="grid h-11 w-11 place-items-center rounded-full bg-verde-escuro text-verde-lima">
-                <FiBookOpen size={20} />
-              </span>
-              <span className="text-[.75rem] font-semibold text-preto/55">Sala</span>
-              <span className="-mt-2 text-[.95rem] leading-tight font-extrabold text-verde-escuro">{room}</span>
+              <div className="aspect-[3/4] overflow-hidden">
+                {/* Top of the photo: the sponsor's sign above the door */}
+                <img
+                  src={room.photo.src}
+                  alt={room.photo.alt}
+                  loading="lazy"
+                  className="h-full w-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(.22,.7,.25,1)] group-hover:scale-[1.05]"
+                />
+              </div>
+              <div className="px-3 py-3.5 text-center">
+                <span className="block text-[.72rem] font-semibold text-preto/55">Sala</span>
+                <span className="block text-[.92rem] leading-tight font-extrabold text-verde-escuro">{room.name}</span>
+              </div>
             </Reveal>
           ))}
         </ul>
