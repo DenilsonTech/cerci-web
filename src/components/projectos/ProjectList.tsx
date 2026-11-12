@@ -21,7 +21,7 @@ export default function ProjectList() {
               eager={i === 0}
             />
             {project.video && (
-              <Reveal className="relative mx-auto aspect-video w-full max-w-[900px] overflow-hidden rounded-2xl shadow-xl shadow-preto/15">
+              <Reveal className="relative mx-auto aspect-9/16 w-full max-w-65 overflow-hidden rounded-2xl shadow-xl shadow-preto/15 sm:max-w-75">
                 <YouTubeVideo {...project.video} />
               </Reveal>
             )}

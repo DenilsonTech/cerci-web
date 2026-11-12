@@ -11,7 +11,7 @@ export default function Testimonials() {
         <SectionHeader eyebrow={testimonials.eyebrow} title={testimonials.title} />
         <Reveal
           delay={0.15}
-          className="relative mx-auto mt-[46px] aspect-video max-w-[900px] overflow-hidden rounded-2xl shadow-xl shadow-preto/15"
+          className="relative mx-auto mt-11.5 aspect-video w-full max-w-[820px] overflow-hidden rounded-2xl border border-verde-vivo/30 shadow-xl shadow-preto/15"
         >
           <YouTubeVideo {...testimonials.video} />
         </Reveal>

@@ -18,9 +18,9 @@ export type Service = {
 
 export const servicesList: Service[] = [
   {
-    slug: "ensino-e-formacao",
-    title: "Ensino e formação",
-    heading: "Ensino **e formação**",
+    slug: "preparacao-escolar",
+    title: "Preparação escolar",
+    heading: "Preparação **escolar**",
     summary:
       "Do pré-escolar do I ao V ano e ensino primário da 1.ª e 2.ª classe, com estimulação da motricidade, linguagem, cognição e socio-afectividade.",
     details: [
@@ -28,8 +28,8 @@ export const servicesList: Service[] = [
       "Para além das actividades acima citadas são também administrados trabalhos de orientação profissional como corte costura, culinária e actividades do refetório cuja finalidade é o ingresso no mercado do emprego. O centro disponibiliza também aulas extracurriculares desde informática, música, xadrez, dança e capoeira.",
     ],
     image: {
-      src: "/img/servicos/ensino.webp",
-      alt: "Ilustração de duas crianças a estudar numa sala de aula.",
+      src: "/img/Homepage/Prepara%C3%A7%C3%A3o%20escolar%20capa.jpeg",
+      alt: "Professor a orientar utentes numa sala de preparação escolar.",
     },
   },
   {
@@ -43,8 +43,8 @@ export const servicesList: Service[] = [
       "Existem casos que são encaminhados para outras áreas ou serviços de saúde específicos a nível interno (Terapias de fala, ocupacional e fisioterapia) ou externo (Otorrinolaringologia, oftamologia, etc.) ou ainda o encaminhados para algumas escolas ou centros de acolhimento que possa dar o acompanhamento necessário.",
     ],
     image: {
-      src: "/img/servicos/psicologia.webp",
-      alt: "Ilustração de uma sessão de acompanhamento psicológico.",
+      src: "/img/psicologico.jpeg",
+      alt: "Sessão de acompanhamento psicológico da CERCI-Maputo.",
     },
   },
   {
@@ -58,8 +58,8 @@ export const servicesList: Service[] = [
       "Intervém também ao nível da deglutição (passagem segura dos alimentos e bebidas através da orofaringe). Esta terapia é indicada a qualquer individuo independentemente da sua faixa etária, tendo como objectivo melhorar as capacidades de comunicação e/ou deglutinação do individuo, permitindo assim melhor qualidade de vida.",
     ],
     image: {
-      src: "/img/servicos/terapia-da-fala.webp",
-      alt: "Ilustração de uma terapeuta da fala a trabalhar com uma criança ao espelho.",
+      src: "/img/Homepage/Terapia%20da%20fala%20capa.jpeg",
+      alt: "Terapeuta da fala a acompanhar um utente numa sessão.",
     },
   },
   {
@@ -72,8 +72,8 @@ export const servicesList: Service[] = [
       "Esta área de actuação tem como objectivo promover maior controle das capacidades motoras, bem como habilitar o individuo para as actividades de vida diárias (AVDs), estimular a coordenação oculo-manual, sensorial, perceção auditiva, táctil, visual, gustativa bem como promover independência funcional.",
     ],
     image: {
-      src: "/img/servicos/terapia-ocupacional.webp",
-      alt: "Ilustração de uma sessão de terapia ocupacional com material de coordenação.",
+      src: "/img/ocupacional.jpeg",
+      alt: "Utente em sessão de terapia ocupacional, com material de coordenação e motricidade.",
     },
   },
   {
@@ -86,8 +86,8 @@ export const servicesList: Service[] = [
       "É um dos serviços de reabilitação oferecidas pela CERCI, que visa a promoção, e desenvolvimento de potencial e reabilitação das capacidades e mobilidades e funcionalidade dos indivíduos ao longo da vida. O seu principal objectivo é maximizar a qualidade de vida e de potencial os movimentos e na promoção, prevenção, tratamento e intervenção.",
     ],
     image: {
-      src: "/img/servicos/fisioterapia.webp",
-      alt: "Ilustração de uma sessão de fisioterapia.",
+      src: "/img/fisioterapia.jpeg",
+      alt: "Utente em sessão de fisioterapia, com acompanhamento técnico da CERCI.",
     },
   },
 ];
