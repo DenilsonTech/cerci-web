@@ -1,4 +1,5 @@
 import { useEffect, useState, type RefObject } from "react";
+import { createPortal } from "react-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import { brand, navLinks } from "../../data/site";
 import { btn } from "../ui/styles";
@@ -34,9 +35,9 @@ export default function Navbar({ heroRef }: Props) {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  return (
+  const navbar = (
     <div
-      className={`inset-x-0 top-0 z-30 flex items-center gap-4 bg-verde-lima px-4 py-3 sm:gap-[26px] sm:px-[26px] ${
+      className={`inset-x-0 top-0 z-100 flex items-center gap-4 bg-verde-lima px-4 py-3 sm:gap-6.5 sm:px-6.5 ${
         stuck ? "drop-in fixed shadow-md shadow-preto/10" : "fade-in absolute"
       }`}
     >
@@ -60,7 +61,7 @@ export default function Navbar({ heroRef }: Props) {
         aria-label="Navegação principal"
         className={`${
           open ? "flex" : "hidden"
-        } absolute inset-x-0 top-full flex-col gap-3.5 bg-verde-lima px-6 py-[18px] shadow-md shadow-preto/10 lg:static lg:ml-auto lg:flex lg:flex-row lg:gap-6 lg:p-0 lg:shadow-none`}
+        } absolute inset-x-0 top-full flex-col gap-3.5 bg-verde-lima px-6 py-4.5 shadow-md shadow-preto/10 lg:static lg:ml-auto lg:flex lg:flex-row lg:gap-6 lg:p-0 lg:shadow-none`}
       >
         {navLinks.map((link) => {
           const isCurrent = link.href === current;
@@ -70,8 +71,10 @@ export default function Navbar({ heroRef }: Props) {
               href={link.href}
               aria-current={isCurrent ? "page" : undefined}
               onClick={() => setOpen(false)}
-              className={`relative self-start px-0.5 py-[5px] text-[.9rem] font-medium text-verde-escuro no-underline after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left after:bg-verde-escuro after:transition-transform after:duration-300 hover:after:scale-x-100 ${
-                isCurrent ? "font-bold after:scale-x-100" : "after:scale-x-0"
+              className={`relative self-start rounded-md px-3 py-2 text-[.9rem] no-underline transition-colors duration-200 after:absolute after:inset-x-3 after:bottom-1 after:h-0.5 after:origin-left after:transition-transform after:duration-300 ${
+                isCurrent
+                  ? "font-bold text-verde-escuro after:bg-verde-escuro after:scale-x-100"
+                  : "font-medium text-verde-escuro after:bg-branco after:scale-x-0 hover:after:scale-x-100"
               }`}
             >
               {link.label}
@@ -90,4 +93,8 @@ export default function Navbar({ heroRef }: Props) {
       </a>
     </div>
   );
+
+  // Render the pinned bar at the document root so galleries and animated
+  // sections cannot paint over it or clip it through an overflow container.
+  return stuck ? createPortal(navbar, document.body) : navbar;
 }

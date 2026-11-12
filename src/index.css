@@ -5,6 +5,7 @@
 @theme {
   --color-verde-escuro: #0b6a3b;
   --color-verde-lima: #c4d82e;
+  --color-verde-vivo: #5fcf80;
   --color-amarelo-esverdeado: #fdfc53;
   --color-preto: #000000;
   --color-branco: #ffffff;
@@ -22,6 +23,18 @@ body {
   color: var(--color-preto);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Soft section tint: fades in and out instead of creating a hard colour edge. */
+.section-tint {
+  background: linear-gradient(
+    180deg,
+    var(--color-branco) 0%,
+    color-mix(in srgb, var(--color-verde-vivo) 10%, var(--color-branco)) 22%,
+    color-mix(in srgb, var(--color-verde-vivo) 16%, var(--color-branco)) 50%,
+    color-mix(in srgb, var(--color-verde-vivo) 10%, var(--color-branco)) 78%,
+    var(--color-branco) 100%
+  );
 }
 
 a:focus-visible,

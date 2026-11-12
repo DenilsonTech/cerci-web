@@ -5,7 +5,7 @@ import { section, wrap } from "../ui/styles";
 
 export default function Approach() {
   return (
-    <section className={`${section} bg-verde-lima/10`}>
+    <section className={`${section} section-tint`}>
       <div className={wrap}>
         <SectionHeader title={approach.title} lede={approach.lede} />
         <FeatureGrid items={approach.items} />

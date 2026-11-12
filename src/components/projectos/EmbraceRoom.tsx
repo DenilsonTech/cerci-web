@@ -6,7 +6,7 @@ import { section, wrap } from "../ui/styles";
 
 export default function EmbraceRoom() {
   return (
-    <section id={embraceRoom.slug} className={`${section} scroll-mt-28 bg-verde-lima/10`}>
+    <section id={embraceRoom.slug} className={`${section} scroll-mt-28 section-tint`}>
       <div className={wrap}>
         <SectionHeader title={embraceRoom.title} lede={embraceRoom.lede} />
 
