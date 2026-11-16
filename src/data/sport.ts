@@ -1,4 +1,5 @@
 import type { Photo } from "./home";
+import { media } from "@/lib/media";
 
 export type SportPhoto = Photo & { caption: string };
 
@@ -29,7 +30,9 @@ export const sportPage = {
       title: "Judo: aprender em **movimento**",
       lede: "Cada treino é uma oportunidade para desenvolver concentração, equilíbrio, disciplina e confiança. Em grupo, cada movimento e cada conquista contam.",
       photos: judoPhotos.map((filename, index) => ({
-        src: `/img/Desporto/Judo/${encodeURIComponent(filename)}`,
+        src: filename === "A.jpeg"
+          ? `/img/Desporto/Judo/${encodeURIComponent(filename)}`
+          : media(`Desporto/Judo/${filename}`),
         alt: `Utentes da CERCI a participar numa actividade de judo, fotografia ${index + 1}.`,
         caption: [
           "O desporto aproxima-nos",

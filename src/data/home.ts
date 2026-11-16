@@ -1,5 +1,6 @@
 import { servicesList } from "./services";
 import { eventGroups } from "./events";
+import { media } from "@/lib/media";
 
 /**
  * Home page content. Wrapping words in **double asterisks** makes them bold
@@ -51,16 +52,16 @@ export const hero = {
     "Educação e reabilitação de crianças e jovens com necessidades educativas especiais, em Maputo, desde 2002.",
   image: "Fotografia de abertura",
   photo: {
-    src: "/img/bannerp/IMG_9455.jpg",
+    src: media("bannerp/IMG_9455.jpg"),
     alt: "Trabalho de grupo da CERCI em ambiente festivo e inclusivo.",
   } satisfies Photo,
   photos: [
     {
-      src: "/img/bannerp/IMG_9455.jpg",
+      src: media("bannerp/IMG_9455.jpg"),
       alt: "Trabalho de grupo da CERCI em ambiente festivo e inclusivo.",
     },
     {
-      src: "/img/bannerp/IMG_9467.jpg",
+      src: media("bannerp/IMG_9467.jpg"),
       alt: "Utentes e equipa da CERCI num momento de celebração e união.",
     },
     {
