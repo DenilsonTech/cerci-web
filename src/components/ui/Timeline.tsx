@@ -87,11 +87,11 @@ export default function Timeline({
       <ol className="relative m-0 list-none p-0 pl-10">
         <span
           aria-hidden="true"
-          className="absolute top-2 bottom-2 left-[7px] w-0.5 bg-verde-escuro/20"
+          className="absolute top-2 bottom-2 left-1.75 w-0.5 bg-verde-escuro/20"
         />
         <span
           aria-hidden="true"
-          className="absolute top-2 bottom-2 left-[7px] w-0.5 origin-top bg-verde-escuro transition-transform duration-300"
+          className="absolute top-2 bottom-2 left-1.75 w-0.5 origin-top bg-verde-escuro transition-transform duration-300"
           style={{ transform: `scaleY(${lineProgress})` }}
         />
 

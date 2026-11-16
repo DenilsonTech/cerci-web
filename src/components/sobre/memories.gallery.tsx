@@ -23,7 +23,7 @@ export default function Memories() {
       <div className={wrap}>
         <SectionHeader title={memories.title} lede={memories.lede} />
 
-        <Reveal className="relative mt-10 aspect-[16/9] overflow-hidden rounded-2xl">
+        <Reveal className="relative mt-10 aspect-video overflow-hidden rounded-2xl">
           {photos.map((photo, index) => (
             <img
               key={photo.src}

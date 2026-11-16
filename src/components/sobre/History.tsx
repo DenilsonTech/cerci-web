@@ -83,7 +83,7 @@ export default function History() {
                     <p className="m-0">{detail}</p>
                   </div>
 
-                  <div className="relative mt-5 aspect-[16/10] w-[85%] max-w-lg overflow-hidden rounded-2xl bg-verde-lima/20">
+                  <div className="relative mt-5 aspect-16/10 w-[85%] max-w-lg overflow-hidden rounded-2xl bg-verde-lima/20">
                     {history.timeline.map((item, index) => {
                       const isVisible = (hoveredIndex ?? activeIndex) === index;
                       if (!item.photo) {
