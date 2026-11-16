@@ -14,7 +14,7 @@ type Props = {
 /** A page section: centred title and intro, then its content. */
 export default function Section({ id, title, lede, tinted = false, children }: Props) {
   return (
-    <section id={id} className={`${section} scroll-mt-28 ${tinted ? "bg-verde-lima/10" : ""}`}>
+    <section id={id} className={`${section} scroll-mt-28 ${tinted ? "section-tint" : ""}`}>
       <div className={wrap}>
         <SectionHeader title={title} lede={lede} />
         {children}

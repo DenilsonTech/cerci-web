@@ -53,6 +53,7 @@ export const helpAreas = {
     { title: "Comunicação", text: "Dinamização das redes sociais e divulgação do trabalho da associação." },
   ],
   gallery: [photos.sessaoDeTerapia, photos.pinturaMural, photos.aulaDeMusica, photos.corridaSacos],
+  flipGallery: [photos.tecnicoEUtente, photos.actividadesLaborais, photos.familiaEquipa, photos.festaInclusao],
 };
 
 export const volunteerForm = {

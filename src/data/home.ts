@@ -1,4 +1,5 @@
 import { servicesList } from "./services";
+import { eventGroups } from "./events";
 
 /**
  * Home page content. Wrapping words in **double asterisks** makes them bold
@@ -21,20 +22,26 @@ export type Photo = {
   focus?: string;
 };
 
-export type TimelineItem = {
-  year: string;
-  /** Where the CERCI was that year */
-  place: string;
-  text: string;
+export type GalleryPhoto = Photo & {
+  title?: string;
+  description?: string;
 };
 
+export type TimelineItem = {
+  year: string;
+  place: string;
+  text: string;
+  /** Foto mostrada quando este ano estiver ativo na timeline */
+  photo?: Photo;
+};
 export type CardItem = {
   title: string;
   text: string;
-  /** Caption shown by the placeholder while there is no photo */
+  details?: string;
   image: string;
-  /** The photo itself, once it exists */
   src?: string;
+  videoSrc?: string;
+  gallery?: GalleryPhoto[];
   action: Action;
 };
 
@@ -44,9 +51,27 @@ export const hero = {
     "Educação e reabilitação de crianças e jovens com necessidades educativas especiais, em Maputo, desde 2002.",
   image: "Fotografia de abertura",
   photo: {
-    src: "/img/fotos/festa-inclusao.webp",
-    alt: "Uma técnica da CERCI dança com um utente em cadeira de rodas, numa festa do centro.",
+    src: "/img/bannerp/IMG_9455.jpg",
+    alt: "Trabalho de grupo da CERCI em ambiente festivo e inclusivo.",
   } satisfies Photo,
+  photos: [
+    {
+      src: "/img/bannerp/IMG_9455.jpg",
+      alt: "Trabalho de grupo da CERCI em ambiente festivo e inclusivo.",
+    },
+    {
+      src: "/img/bannerp/IMG_9467.jpg",
+      alt: "Utentes e equipa da CERCI num momento de celebração e união.",
+    },
+    {
+      src: "/img/bannerp/WhatsApp Image 2026-09-29 at 15.25.13(2).jpeg",
+      alt: "Crianças e adultos da CERCI em gesto de celebração e alegria.",
+    },
+    {
+      src: "/img/bannerp/WhatsApp Image 2026-09-29 at 15.25.13.jpeg",
+      alt: "Momento de convivência e apoio entre utentes, famílias e equipa da CERCI.",
+    },
+  ] satisfies Photo[],
   actions: [
     { label: "Inscrever um utente", href: "#apoiar", variant: "accent" },
     { label: "Ver os nossos serviços", href: "/servicos/", variant: "outline" },
@@ -65,21 +90,37 @@ export const about = {
       year: "2002",
       place: "CEPOP",
       text: "Constituição da associação, nas instalações da CEPOP.",
+      photo: {
+        src: "/img/fotos/sala-de-aula.webp",
+        alt: "Utentes numa sala de aprendizagem da CERCI-Maputo.",
+      },
     },
     {
       year: "2005",
       place: "FACIM",
       text: "Mudança para a FACIM, na antiga escola Portuguesa.",
+      photo: {
+        src: "/img/Homepage/facim.jpeg",
+        alt: "Utentes da CERCI reunidos na antiga escola Portuguesa.",
+      },
     },
     {
       year: "2010",
       place: "Av. Kwame Nkrumah",
       text: "Seis anos numa residência na Av. Kwame Nkrumah.",
+      photo: {
+        src: "/img/Homepage/kwamen.jpeg",
+        alt: "Edifício da CERCI na Avenida Kwame Nkrumah.",
+      },
     },
     {
       year: "2016",
       place: "Av. Milagre Mabote",
       text: "Inauguração do edifício próprio, na Av. Milagre Mabote.",
+      photo: {
+        src: "/img/fotos/edificio-cerci.webp",
+        alt: "Edifício próprio da CERCI, na Av. Milagre Mabote.",
+      },
     },
   ] satisfies TimelineItem[],
   action: { label: "Conhecer a nossa história", href: "/sobre-nos/" } as Action,
@@ -106,13 +147,15 @@ export const services = {
   title: "Serviços que **transformam vidas**",
   lede: "Uma equipa multidisciplinar num só lugar. As crianças e jovens são avaliados, acompanhados e, quando necessário, encaminhados para outras especialidades.",
   items: servicesList.slice(0, 3).map(
-    (s): CardItem => ({
+    (s): CardItem => {
+      return {
       title: s.title,
       text: s.summary,
       image: s.image.alt,
       src: s.image.src,
       action: { label: "Saber mais", href: `/servicos/#${s.slug}` },
-    })
+    };
+    }
   ),
   more: { label: "Ver todos os serviços", href: "/servicos/" } as Action,
 };
@@ -120,29 +163,20 @@ export const services = {
 export const events = {
   title: "A vida **do centro**",
   lede: "Actividades curriculares, visitas de estudo e datas comemorativas. É aqui que quem nos apoia vê para onde vai o seu contributo.",
-  items: [
-    {
-      title: "Actividades curriculares",
-      text: "Corte e costura, culinária e refeitório, a par de informática, música, xadrez, dança e capoeira.",
-      image: "Utentes da CERCI numa actividade de trabalhos manuais, à volta das mesas.",
-      src: "/img/fotos/actividades-laborais.webp",
-      action: { label: "Ver galeria", href: "/eventos/" },
-    },
-    {
-      title: "Visitas de estudo",
-      text: "Saídas que levam a aprendizagem para fora do centro e alargam os ambientes de actuação dos utentes.",
-      image: "Utente em cadeira de rodas, com capacete de bombeiro, numa visita a um quartel de bombeiros.",
-      src: "/img/fotos/visita-bombeiros.webp",
-      action: { label: "Ver galeria", href: "/eventos/" },
-    },
-    {
-      title: "Eventos comemorativos",
-      text: "Dia da Criança, festas de fim de ano e as datas que juntam famílias, utentes e parceiros.",
-      image: "Crianças e jovens da CERCI sentados num evento festivo, com familiares ao fundo.",
-      src: "/img/fotos/evento-comemorativo.webp",
-      action: { label: "Ver galeria", href: "/eventos/" },
-    },
-  ] satisfies CardItem[],
+  items: eventGroups.map(
+    (group): CardItem => ({
+      title: group.title,
+      text: group.paragraphs[0],
+      details: group.paragraphs.join(" "),
+      image: group.image.alt,
+      src: group.image.src,
+      videoSrc: group.videoSrc,
+      gallery: [...group.gallery, ...group.flipGallery].filter(
+        (photo): photo is Photo => "src" in photo,
+      ),
+      action: { label: "Ver galeria", href: `/eventos/#${group.slug}` },
+    }),
+  ),
 };
 
 export const testimonials = {

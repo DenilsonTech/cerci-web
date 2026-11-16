@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import type { Photo } from "../../data/home";
 import Emphasis from "./Emphasis";
 import Placeholder from "./Placeholder";
@@ -14,6 +14,8 @@ type Props = {
   paragraphs: string[];
   /** The photo, or the caption of the photo that will go there */
   image: Photo | { placeholder: string };
+  /** Optional cover video that replaces the still image */
+  videoSrc?: string;
   /** Image on the right instead of the left */
   flip?: boolean;
   /** First on the page: load the image straight away */
@@ -29,25 +31,46 @@ export default function SplitArticle({
   heading,
   paragraphs,
   image,
+  videoSrc,
   flip = false,
   eager = false,
   children,
 }: Props) {
+  const [imageFailed, setImageFailed] = useState(false);
+  const hasImage = "src" in image;
+  const imageLabel = hasImage ? image.alt : image.placeholder;
+
   return (
     <article id={id} className="grid scroll-mt-28 items-center gap-8 lg:grid-cols-2 lg:gap-16">
       <Reveal className={flip ? "lg:order-2" : ""}>
         <div className="group overflow-hidden rounded-2xl border border-preto/10 bg-branco">
-          {"src" in image ? (
+          {videoSrc ? (
+            <video
+              src={videoSrc}
+              poster={hasImage ? image.src : undefined}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label={imageLabel}
+              onCanPlay={(event) => {
+                void event.currentTarget.play().catch(() => undefined);
+              }}
+              className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(.22,.7,.25,1)] group-hover:scale-[1.04]"
+            />
+          ) : hasImage && !imageFailed ? (
             <img
               src={image.src}
               alt={image.alt}
               loading={eager ? "eager" : "lazy"}
+              onError={() => setImageFailed(true)}
               style={{ objectPosition: image.focus }}
               className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(.22,.7,.25,1)] group-hover:scale-[1.04]"
             />
           ) : (
             <div className="aspect-[4/3]">
-              <Placeholder label={image.placeholder} />
+              <Placeholder label={hasImage ? image.alt : image.placeholder} />
             </div>
           )}
         </div>

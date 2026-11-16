@@ -15,7 +15,7 @@ export default function Eventos() {
       />
       <main id="conteudo">
         {eventGroups.map((group, i) => (
-          <section key={group.slug} className={`${section} ${i % 2 === 1 ? "bg-verde-lima/10" : ""}`}>
+          <section key={group.slug} className={`${section} ${i % 2 === 1 ? "section-tint" : ""}`}>
             <div className={wrap}>
               <SplitArticle
                 id={group.slug}
@@ -23,6 +23,11 @@ export default function Eventos() {
                 heading={group.heading}
                 paragraphs={group.paragraphs}
                 image={group.image}
+                videoSrc={
+                  group.slug === "actividades-curriculares" || group.slug === "visitas-de-estudo"
+                    ? group.videoSrc
+                    : undefined
+                }
                 flip={i % 2 === 1}
               >
                 {group.tags && (
@@ -38,7 +43,7 @@ export default function Eventos() {
                   </ul>
                 )}
               </SplitArticle>
-              <Gallery items={group.gallery} />
+              <Gallery items={group.gallery} flipItems={group.flipGallery} autoFlip={false} />
             </div>
           </section>
         ))}

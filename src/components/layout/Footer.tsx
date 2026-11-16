@@ -1,5 +1,5 @@
 import type { IconType } from "react-icons";
-import { FaFacebookF, FaInstagram, FaXTwitter } from "react-icons/fa6";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 import { brand, contact, footer, navLinks } from "../../data/site";
 import Reveal from "../ui/Reveal";
 import { wrap } from "../ui/styles";
@@ -7,7 +7,7 @@ import { wrap } from "../ui/styles";
 const socialIcons: Record<string, IconType> = {
   facebook: FaFacebookF,
   instagram: FaInstagram,
-  x: FaXTwitter,
+  linkedin: FaLinkedinIn,
 };
 
 const colTitle = "m-0 mb-3.5 text-[.86rem] font-extrabold";

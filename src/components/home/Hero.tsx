@@ -7,8 +7,6 @@ import { btn, headingDisplay } from "../ui/styles";
 
 const delay = (s: number) => ({ "--d": `${s}s` }) as CSSProperties;
 
-// Full screen at the top of the page; on desktop it shrinks into a rounded
-// card once the visitor scrolls, as on the Dondzalandia site.
 function isFullBleed() {
   return window.innerWidth < 768 || window.scrollY <= 80;
 }
@@ -16,11 +14,24 @@ function isFullBleed() {
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
   const [fullBleed, setFullBleed] = useState(isFullBleed);
+  const [photoIndex, setPhotoIndex] = useState(0);
+  const photos = hero.photos?.length ? hero.photos : [hero.photo];
+
+  useEffect(() => {
+    if (photos.length < 2) return;
+
+    const timer = window.setInterval(() => {
+      setPhotoIndex((index) => (index + 1) % photos.length);
+    }, 10_000);
+
+    return () => window.clearInterval(timer);
+  }, [photos.length]);
 
   useEffect(() => {
     const update = () => setFullBleed(isFullBleed());
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
+
     return () => {
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
@@ -35,7 +46,14 @@ export default function Hero() {
           fullBleed ? "" : "md:mt-3.5 md:w-[95%] md:rounded-2xl"
         }`}
       >
-        <Backdrop photo={hero.photo} label={hero.image} priority />
+        <div
+          key={photos[photoIndex].src}
+          aria-hidden={false}
+          className="absolute inset-0 transition-opacity duration-1000 opacity-100"
+        >
+          <Backdrop photo={photos[photoIndex]} label={hero.image} priority={photoIndex === 0} />
+        </div>
+
         <div className="absolute inset-0 bg-gradient-to-b from-preto/55 via-preto/25 to-preto/50" />
 
         <Navbar heroRef={heroRef} />
@@ -54,9 +72,13 @@ export default function Hero() {
             {hero.subtitle}
           </p>
           <div className="enter mt-[26px] flex flex-wrap justify-center gap-3" style={delay(0.48)}>
-            {hero.actions.map((a) => (
-              <a key={a.href} href={a.href} className={a.variant === "accent" ? btn.lime : btn.glass}>
-                {a.label}
+            {hero.actions.map((action) => (
+              <a
+                key={action.href}
+                href={action.href}
+                className={action.variant === "accent" ? btn.lime : btn.glass}
+              >
+                {action.label}
               </a>
             ))}
           </div>

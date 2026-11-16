@@ -31,12 +31,15 @@ export default function PageHeader({ eyebrow, title, lede, links, photo }: Props
     <div id="topo" className="px-2.5 pt-2.5 sm:px-4 sm:pt-4">
       <header
         ref={headerRef}
-        className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-verde-escuro to-preto px-6 pt-36 pb-16 text-branco sm:px-10"
+        className="relative isolate min-h-105 overflow-hidden rounded-2xl bg-linear-to-br from-verde-escuro to-preto px-6 pt-36 pb-16 text-branco sm:min-h-115 sm:px-10"
       >
         {photo ? (
           <>
             <Backdrop photo={photo} label={photo.alt} priority />
-            <div className="absolute inset-0 bg-gradient-to-r from-verde-escuro/95 via-verde-escuro/75 to-preto/45" />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-linear-to-r from-verde-escuro/95 via-verde-escuro/78 to-verde-escuro/55 backdrop-blur-[2px]"
+            />
           </>
         ) : (
           <div className={`ken absolute inset-0 opacity-10 ${grid}`} />
@@ -44,7 +47,7 @@ export default function PageHeader({ eyebrow, title, lede, links, photo }: Props
 
         <Navbar heroRef={headerRef} />
 
-        <div className="relative z-[2] mx-auto max-w-[1180px]">
+        <div className="relative z-2 mx-auto max-w-295">
           <p
             className="enter m-0 mb-3 text-[.8rem] font-bold tracking-[.14em] text-verde-lima uppercase"
             style={delay(0.1)}

@@ -1,10 +1,14 @@
-import { about } from "../../data/home";
+import { useState } from "react";
+import { about, type Photo } from "../../data/home";
 import Reveal from "../ui/Reveal";
 import SectionHeader from "../ui/SectionHeader";
 import Timeline from "../ui/Timeline";
 import { btn, section, wrap } from "../ui/styles";
 
 export default function About() {
+  const [activeYearIndex, setActiveYearIndex] = useState(0);
+  const activePhoto: Photo = about.timeline[activeYearIndex]?.photo ?? about.photo;
+
   return (
     <section id="sobre" className={section}>
       <div className={wrap}>
@@ -13,15 +17,16 @@ export default function About() {
         <div className="mt-12 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal className="group overflow-hidden rounded-2xl">
             <img
-              src={about.photo.src}
-              alt={about.photo.alt}
+              src={activePhoto.src}
+              alt={activePhoto.alt}
               loading="lazy"
+              style={{ objectPosition: activePhoto.focus }}
               className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(.22,.7,.25,1)] group-hover:scale-[1.04]"
             />
           </Reveal>
 
           <div>
-            <Timeline items={about.timeline} />
+            <Timeline items={about.timeline} onActiveChange={setActiveYearIndex} />
 
             <Reveal delay={0.8} className="mt-9">
               <a href={about.action.href} className={btn.outline}>

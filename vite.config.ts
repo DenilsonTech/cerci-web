@@ -12,6 +12,7 @@ const pages = {
   servicos: 'servicos/index.html',
   projectos: 'projectos/index.html',
   eventos: 'eventos/index.html',
+  desporto: 'desporto/index.html',
   voluntariado: 'voluntariado/index.html',
   parceiros: 'parceiros/index.html',
 }

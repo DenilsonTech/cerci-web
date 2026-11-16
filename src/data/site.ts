@@ -11,6 +11,7 @@ export const navLinks = [
   { href: "/servicos/", label: "Serviços" },
   { href: "/projectos/", label: "Projectos" },
   { href: "/eventos/", label: "Eventos" },
+  { href: "/desporto/", label: "Desporto" },
   { href: "/voluntariado/", label: "Voluntariado" },
   { href: "/parceiros/", label: "Parceiros" },
 ];
@@ -49,9 +50,9 @@ export const footer = {
     { label: "Estatuto (PDF)", href: "https://cerci.edu.mz/images/estatuto.pdf" },
   ],
   socials: [
-    { id: "facebook", label: "Facebook", href: "https://www.facebook.com/cercimaputo/" },
-    { id: "instagram", label: "Instagram", href: "https://www.instagram.com/cercimaputo/" },
-    { id: "x", label: "X, antigo Twitter", href: "https://twitter.com/CerciMaputo" },
+    { id: "facebook", label: "Facebook", href: "https://www.facebook.com/profile.php?id=100068296430676" },
+    { id: "instagram", label: "Instagram", href: "https://www.instagram.com/cerci_maputo?xtok=MWcxOHd1MWdzYnlqaA==" },
+    { id: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/cerci-maputo-407167288?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
   ],
   address: ["Av. Milagre Mabote, n.º 238,", "Maputo, Moçambique"],
   hours: "Segunda a sexta: 7h30 – 15h30",

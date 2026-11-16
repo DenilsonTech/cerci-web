@@ -46,7 +46,7 @@ export default function Voluntariado() {
 
         <Section id={helpAreas.id} title={helpAreas.title} lede={helpAreas.lede} tinted>
           <FeatureGrid items={helpAreas.items} />
-          <Gallery items={helpAreas.gallery} />
+          <Gallery items={helpAreas.gallery} flipItems={helpAreas.flipGallery} />
         </Section>
 
         <Section id={volunteerForm.id} title={volunteerForm.title} lede={volunteerForm.lede}>
