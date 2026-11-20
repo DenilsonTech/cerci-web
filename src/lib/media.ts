@@ -3,4 +3,4 @@ const base = import.meta.env.VITE_MEDIA_URL;
 export const media = (path: string) => `${base}/${encodeURI(path)}`;
 
 export const mediaFallback = (path: string) =>
-  `/img/${path.split("/").map(encodeURIComponent).join("/")}`;
+  `/img/${path.replace(/\.(?:jpe?g|png)$/i, ".webp").split("/").map(encodeURIComponent).join("/")}`;
