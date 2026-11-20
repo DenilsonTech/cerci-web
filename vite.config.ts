@@ -21,6 +21,11 @@ const pages = {
 export default defineConfig({
   // No SPA fallback: an unknown URL is a 404, as it will be on the host
   appType: 'mpa',
+  resolve: {
+    alias: {
+      '@': resolve(import.meta.dirname, 'src'),
+    },
+  },
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] }),

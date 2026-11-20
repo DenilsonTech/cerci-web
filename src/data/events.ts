@@ -1,6 +1,7 @@
 /** Eventos page content. */
 
 import type { GalleryItem } from "../components/ui/Gallery";
+import { media } from "@/lib/media";
 import type { Photo } from "./home";
 import { photos } from "./photos";
 
@@ -33,7 +34,7 @@ const eventPhotoSet = (
   eventName: string,
 ): Photo[] =>
   filenames.map((filename, index) => ({
-    src: `/img/Eventos/${folder.split("/").map(encodeURIComponent).join("/")}/${encodeURIComponent(filename)}`,
+    src: media(`Eventos/${folder}/${filename}`),
     alt: `${eventName} na CERCI-Maputo, fotografia ${index + 1}.`,
   }));
 
@@ -85,7 +86,7 @@ export const eventGroups: EventGroup[] = [
       "A par destas, o centro disponibiliza aulas extracurriculares desde informática, música, xadrez, dança e capoeira.",
     ],
     image: curricularPhotos[0],
-    videoSrc: "/img/Eventos/Actividades%20curriculares/CERCI%20Actividade.mp4",
+    videoSrc: media("Eventos/Actividades curriculares/CERCI Actividade.mp4"),
     tags: ["Corte e costura", "Culinária", "Refeitório", "Informática", "Música", "Xadrez", "Dança", "Capoeira"],
     gallery: curricularPhotos,
     flipGallery: curricularFlipPhotos,
@@ -99,7 +100,7 @@ export const eventGroups: EventGroup[] = [
       "Saídas que levam a aprendizagem para fora do centro e ampliam os ambientes de actuação dos utentes, com o envolvimento dos cuidadores e da equipa técnica.",
     ],
     image: photos.eventoComemorativo,
-    videoSrc: "/img/Eventos/Videovisita.mp4",
+    videoSrc: media("Eventos/Videovisita.mp4"),
     gallery: [photos.eventoComemorativo, photos.diaDaCrianca, galaPhotos[2], mentalHealthPhotos[2]],
     flipGallery: [photos.festaInclusao, photos.actuacaoMusical, galaPhotos[3], mentalHealthPhotos[3]],
   },
@@ -125,10 +126,10 @@ export const eventGroups: EventGroup[] = [
       "Reveja alguns momentos desta celebração e das pessoas que fazem parte da história da instituição.",
     ],
     image: {
-      src: `/img/Eventos/${encodeURIComponent(galaFolder)}/capa.jpg`,
+      src: media(`Eventos/${galaFolder}/capa.jpg`),
       alt: "Imagem de capa da Gala dos 20 anos da CERCI-Maputo.",
     },
-    videoSrc: "/img/Eventos/Gala%2020%20anos/Video.mp4",
+    videoSrc: media(`Eventos/${galaFolder}/Video.mp4`),
     gallery: galaPhotos,
     flipGallery: galaFlipPhotos,
   },
@@ -142,7 +143,7 @@ export const eventGroups: EventGroup[] = [
       "Estes momentos reforçam a importância do bem-estar, da inclusão e do apoio às pessoas e às famílias.",
     ],
     image: {
-      src: `/img/Eventos/${mentalHealthFolder.split("/").map(encodeURIComponent).join("/")}/capa.jpg`,
+      src: media(`Eventos/${mentalHealthFolder}/capa.jpg`),
       alt: "Imagem de capa do Dia da Saúde Mental e Acção Social da CERCI-Maputo.",
     },
     gallery: mentalHealthPhotos,
