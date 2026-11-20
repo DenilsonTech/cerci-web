@@ -1,7 +1,11 @@
+import { useState } from "react";
 import type { SportPhoto } from "../../data/sport";
 import Reveal from "../ui/Reveal";
 
 export default function SportGallery({ photos }: { photos: SportPhoto[] }) {
+  const [fallbackImages, setFallbackImages] = useState<Record<string, boolean>>({});
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
+
   return (
     <ul className="mt-8 grid auto-rows-[150px] grid-cols-2 list-none gap-3 p-0 sm:auto-rows-[190px] sm:gap-4 lg:auto-rows-[205px] lg:grid-cols-4 lg:gap-5">
       {photos.map((photo, index) => {
@@ -19,10 +23,18 @@ export default function SportGallery({ photos }: { photos: SportPhoto[] }) {
             className={`group relative isolate overflow-hidden rounded-2xl bg-verde-escuro shadow-md shadow-verde-escuro/10 ${layout}`}
           >
             <img
-              src={photo.src}
+              src={fallbackImages[photo.src] && photo.fallbackSrc ? photo.fallbackSrc : photo.src}
               alt={photo.alt}
               loading="lazy"
+              onError={() => {
+                if (photo.fallbackSrc && !fallbackImages[photo.src]) {
+                  setFallbackImages((current) => ({ ...current, [photo.src]: true }));
+                } else {
+                  setFailedImages((current) => ({ ...current, [photo.src]: true }));
+                }
+              }}
               style={{ objectPosition: photo.focus }}
+              hidden={failedImages[photo.src]}
               className={`absolute inset-0 h-full w-full transition-transform duration-700 ease-[cubic-bezier(.22,.7,.25,1)] group-hover:scale-105 ${
                 index === 0 ? "object-contain" : "object-cover"
               }`}

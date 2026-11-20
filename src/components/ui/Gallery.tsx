@@ -19,6 +19,7 @@ export default function Gallery({
   const [showFlipItems, setShowFlipItems] = useState<boolean[]>(() => items.map(() => false));
   const [turnIndex, setTurnIndex] = useState<number | null>(null);
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
+  const [fallbackImages, setFallbackImages] = useState<Record<string, boolean>>({});
   const sequenceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hasBookFlip = items.length === 4 && flipItems?.length === 4;
   const alternateItems = hasBookFlip ? flipItems : items;
@@ -67,12 +68,18 @@ export default function Gallery({
       <div className={faceClass}>
         {"src" in item && !failed ? (
           <img
-            src={item.src}
+            src={fallbackImages[key] && item.fallbackSrc ? item.fallbackSrc : item.src}
             alt={back ? "" : item.alt}
             aria-hidden={back}
             loading="lazy"
             decoding="async"
-            onError={() => setFailedImages((current) => ({ ...current, [key]: true }))}
+            onError={() => {
+              if (item.fallbackSrc && !fallbackImages[key]) {
+                setFallbackImages((current) => ({ ...current, [key]: true }));
+              } else {
+                setFailedImages((current) => ({ ...current, [key]: true }));
+              }
+            }}
             style={{ objectPosition: item.focus }}
             className="h-full w-full scale-[1.01] object-cover [image-rendering:auto] motion-reduce:scale-100"
           />

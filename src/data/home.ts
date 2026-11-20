@@ -18,6 +18,7 @@ export type Action = {
 
 export type Photo = {
   src: string;
+  fallbackSrc?: string;
   alt: string;
   /** Part of the photo that stays in view when cropped (CSS object-position) */
   focus?: string;

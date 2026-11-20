@@ -1,5 +1,5 @@
 import type { Photo } from "./home";
-import { media } from "@/lib/media";
+import { media, mediaFallback } from "@/lib/media";
 
 export type SportPhoto = Photo & { caption: string };
 
@@ -33,6 +33,7 @@ export const sportPage = {
         src: filename === "A.jpeg"
           ? `/img/Desporto/Judo/${encodeURIComponent(filename)}`
           : media(`Desporto/Judo/${filename}`),
+        fallbackSrc: mediaFallback(`Desporto/Judo/${filename}`),
         alt: `Utentes da CERCI a participar numa actividade de judo, fotografia ${index + 1}.`,
         caption: [
           "O desporto aproxima-nos",

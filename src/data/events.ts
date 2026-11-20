@@ -1,7 +1,7 @@
 /** Eventos page content. */
 
 import type { GalleryItem } from "../components/ui/Gallery";
-import { media } from "@/lib/media";
+import { media, mediaFallback } from "@/lib/media";
 import type { Photo } from "./home";
 import { photos } from "./photos";
 
@@ -35,6 +35,7 @@ const eventPhotoSet = (
 ): Photo[] =>
   filenames.map((filename, index) => ({
     src: media(`Eventos/${folder}/${filename}`),
+    fallbackSrc: mediaFallback(`Eventos/${folder}/${filename}`),
     alt: `${eventName} na CERCI-Maputo, fotografia ${index + 1}.`,
   }));
 
@@ -127,6 +128,7 @@ export const eventGroups: EventGroup[] = [
     ],
     image: {
       src: media(`Eventos/${galaFolder}/capa.jpg`),
+      fallbackSrc: mediaFallback(`Eventos/${galaFolder}/capa.jpg`),
       alt: "Imagem de capa da Gala dos 20 anos da CERCI-Maputo.",
     },
     videoSrc: media(`Eventos/${galaFolder}/Video.mp4`),
@@ -144,6 +146,7 @@ export const eventGroups: EventGroup[] = [
     ],
     image: {
       src: media(`Eventos/${mentalHealthFolder}/capa.jpg`),
+      fallbackSrc: mediaFallback(`Eventos/${mentalHealthFolder}/capa.jpg`),
       alt: "Imagem de capa do Dia da Saúde Mental e Acção Social da CERCI-Maputo.",
     },
     gallery: mentalHealthPhotos,
